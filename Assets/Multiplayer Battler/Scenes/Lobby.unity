@@ -1646,6 +1646,7 @@ GameObject:
   - component: {fileID: 849632810}
   - component: {fileID: 849632809}
   - component: {fileID: 849632811}
+  - component: {fileID: 849632812}
   m_Layer: 5
   m_Name: Panel - Lobby
   m_TagString: Untagged
@@ -1739,6 +1740,20 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &849632812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849632807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8dde53eb16c16747b34fc2591291c18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftTeamHolder: {fileID: 691585635}
+  rightTeamHolder: {fileID: 320671730}
 --- !u!1 &873861479
 GameObject:
   m_ObjectHideFlags: 0
