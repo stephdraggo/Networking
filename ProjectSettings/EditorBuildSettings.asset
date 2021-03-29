@@ -6,11 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Multiplayer Battler/Scenes/GamePlay.unity
-    guid: 5e7af4bd95ac53a4cb784a9eedf8f6f9
-  - enabled: 1
     path: Assets/Multiplayer Battler/Scenes/Offline.unity
     guid: 805ccae3f5e62a3418a55ff81f0d6a4d
+  - enabled: 1
+    path: Assets/Multiplayer Battler/Scenes/GamePlay.unity
+    guid: 5e7af4bd95ac53a4cb784a9eedf8f6f9
   - enabled: 1
     path: Assets/Multiplayer Battler/Scenes/Online.unity
     guid: 46ebc74c153a8b24e822c1fe4c645184

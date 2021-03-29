@@ -17,9 +17,13 @@ namespace BattleCars.UI
         //flipping bool to determine which team to assign each player to
         private bool assignToLeft = true;
 
+        private BattleCarsPlayerNet localPlayer;
+
         public void OnPlayerConnected(BattleCarsPlayerNet _player)
         {
             bool assigned = false; //this be break in foreach
+
+            if (_player.isLocalPlayer) localPlayer = _player;
 
             List<LobbyPlayerSlot> slots = assignToLeft ? leftTeamSlots : rightTeamSlots;
 
@@ -32,9 +36,23 @@ namespace BattleCars.UI
                 else if (!slot.IsTaken)
                 {
                     slot.AssignPlayer(_player);
+                    slot.SetSide(assignToLeft);
                     assigned = true;
                 }
             });
+
+            for (int i = 0; i < leftTeamSlots.Count; i++)
+            {
+                LobbyPlayerSlot slot = leftTeamSlots[i];
+                if (slot.IsTaken)
+                    localPlayer.AssignPlayerToSlot(slot.IsLeft, i, slot.Player.playerId);
+            }
+            for (int i = 0; i < rightTeamSlots.Count; i++)
+            {
+                LobbyPlayerSlot slot = rightTeamSlots[i];
+                if (slot.IsTaken)
+                    localPlayer.AssignPlayerToSlot(slot.IsLeft, i, slot.Player.playerId);
+            }
 
             assignToLeft = !assignToLeft; //flip team
         }
@@ -46,6 +64,15 @@ namespace BattleCars.UI
             rightTeamSlots.AddRange(rightTeamHolder.GetComponentsInChildren<LobbyPlayerSlot>());
 
 
+        }
+
+        /// <summary>
+        /// Assigns player to team and slot.
+        /// </summary>
+        public void AssignPlayerToSlot(BattleCarsPlayerNet _player, bool _left, int _slotId)
+        {
+            List<LobbyPlayerSlot> slots = _left ? leftTeamSlots : rightTeamSlots; //assign team
+            slots[_slotId].AssignPlayer(_player); //assign slot
         }
 
         void Update()
