@@ -1,10 +1,13 @@
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using Mirror;
 using BattleCars.UI;
+using BattleCars.Player;
 using System.Collections;
 
 namespace BattleCars.Networking
 {
+    [RequireComponent(typeof(PlayerMotor))]
     public class BattleCarsPlayerNet : NetworkBehaviour
     {
         [SyncVar]
@@ -43,6 +46,17 @@ namespace BattleCars.Networking
             lobby.AssignPlayerToSlot(_player, _left, _slotId);
         }
         #endregion
+
+        private void Start()
+        {
+            if (isLocalPlayer)
+            {
+                PlayerMotor playerMotor = gameObject.GetComponent<PlayerMotor>();
+                playerMotor.Setup();
+                //can move in lobby eheh
+            }
+        }
+
         private void Update()
         {
             if (BattleCarsNetworkManager.Instance.IsHost)
