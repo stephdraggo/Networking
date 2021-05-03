@@ -19,12 +19,16 @@ namespace BattleCars.Networking
         /// </summary>
         public bool IsHost { get; private set; } = false;
 
+
+        public BattleCarsNetworkDiscovery discovery;
+
         /// <summary>
         /// says this network is the host if it run the start hosting method
         /// </summary>
         public override void OnStartHost()
         {
             IsHost = true;
+            discovery.AdvertiseServer();
         }
 
         public void AddPlayer(BattleCarsPlayerNet _player)
